@@ -78,6 +78,7 @@ pageextension 50110 PostSalesInvoices extends "Posted Sales Invoice"
             // Username :=  // Replace with your actual Africa's Talking username
             // SmsGatewayUrl := 'https://api.sandbox.africastalking.com/version1/messaging';
 
+
             RequestBody := 'username=' + Username + '&to=%2B' + CustomerPhoneNumber + '&message=' + MessageText;
 
             // Create HttpContent object with the request body
