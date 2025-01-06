@@ -36,9 +36,13 @@ table 50110 SMSSetup
 
     keys
     {
-    key(Key1; "Primary Key")
+    key(PK; "Primary Key")
         {
             Clustered = true;
+        }
+        key(Key1; ApiUsername)
+        {
+            Clustered = false;
         }
     
     }
