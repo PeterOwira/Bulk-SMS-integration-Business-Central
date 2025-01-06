@@ -30,7 +30,7 @@ pageextension 50110 PostSalesInvoices extends "Posted Sales Invoice"
 
                             repeat
                                 LAmount += SalesLineRec."Amount Including VAT";
-                                Message(Format(LAmount));
+                            //Message(Format(LAmount));
                             until SalesLineRec.Next() = 0;
                         end;
 
@@ -66,17 +66,13 @@ pageextension 50110 PostSalesInvoices extends "Posted Sales Invoice"
         SmsGatewayUrl: Text;
         SMSSetup: Record SMSSetup;
     begin
-        Message('Passed here');
         SMSSetup.Reset();
         IF SMSSetup.Get() THEN BEGIN
-
-
-            Message(SMSSetup.ApiUsername);
-
             // Africa's Talking API credentials
-            // ApiKey :=  // Replace with your actual API key
-            // Username :=  // Replace with your actual Africa's Talking username
-            // SmsGatewayUrl := 'https://api.sandbox.africastalking.com/version1/messaging';
+
+            ApiKey := SMSSetup.ApiKey;  // Replace with your actual API key
+            Username := SMSSetup.ApiUsername; // Replace with your actual Africa's Talking username
+            SmsGatewayUrl := SMSSetup.ApiEndpoint;
 
 
             RequestBody := 'username=' + Username + '&to=%2B' + CustomerPhoneNumber + '&message=' + MessageText;
@@ -85,7 +81,6 @@ pageextension 50110 PostSalesInvoices extends "Posted Sales Invoice"
             Content.WriteFrom(RequestBody);
 
             Content.GetHeaders(Headers); // Add Content-Type header here
-                                         //Failed to send SMS: The request's Content-Type [text/plain; charset=UTF-8] is not supported. Expected:application/x-www-form-urlencoded or multipart/form-data
             Headers.Clear(); // Remove existing Content-Type header if it exists
             Headers.Add('Content-Type', 'application/x-www-form-urlencoded');
 

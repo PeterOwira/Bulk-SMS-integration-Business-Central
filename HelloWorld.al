@@ -89,23 +89,17 @@ pageextension 50100 CustomerListExt extends "Customer List"
         SmsGatewayUrl: Text;
     begin
         // Africa's Talking API credentials
-        ApiKey := 'atsk_6a7041873a97551dabb571229474f75a18b2c03705884dfe61a605e8f83138df818a0f02'; // Replace with your actual API key
-        Username := 'sandbox'; // Replace with your actual Africa's Talking username
+        ApiKey := '';// Replace with your actual API key
+        Username := '';// Replace with your actual Africa's Talking username
         SmsGatewayUrl := 'https://api.sandbox.africastalking.com/version1/messaging';
 
-        // Create the request body
-        //     RequestBody := '{
-        //     "username": "' + Username + '",
-        //     "to": "' + CustomerPhoneNumber + '",
-        //     "message": "' + MessageText + '"
-        // }';
+
         RequestBody := 'username=' + Username + '&to=%2B' + CustomerPhoneNumber + '&message=' + MessageText;
 
         // Create HttpContent object with the request body
         Content.WriteFrom(RequestBody);
 
         Content.GetHeaders(Headers); // Add Content-Type header here
-        //Failed to send SMS: The request's Content-Type [text/plain; charset=UTF-8] is not supported. Expected:application/x-www-form-urlencoded or multipart/form-data
         Headers.Clear(); // Remove existing Content-Type header if it exists
         Headers.Add('Content-Type', 'application/x-www-form-urlencoded');
 
