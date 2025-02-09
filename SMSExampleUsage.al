@@ -11,6 +11,8 @@ pageextension 50110 PostSalesInvoices extends "Posted Sales Invoice"
             action(SendSMS)
             {
                 ApplicationArea = Basic, Suite;
+                Promoted = true;
+                PromotedCategory = Process;
                 Caption = 'Send SMS';
                 ToolTip = 'Send SMS to Customer for payment';
                 Image = SendTo;
@@ -30,7 +32,7 @@ pageextension 50110 PostSalesInvoices extends "Posted Sales Invoice"
 
                             repeat
                                 LAmount += SalesLineRec."Amount Including VAT";
-                            //Message(Format(LAmount));
+
                             until SalesLineRec.Next() = 0;
                         end;
 

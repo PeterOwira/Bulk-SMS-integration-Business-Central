@@ -17,7 +17,7 @@ pageextension 50100 CustomerListExt extends "Customer List"
             {
                 Caption = 'Notify Customer';
                 ApplicationArea = All;
-                Image = Action;
+                Image = SendTo;
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
